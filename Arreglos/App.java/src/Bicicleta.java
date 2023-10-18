@@ -1,5 +1,3 @@
-package abstracciones;
-
 public class Bicicleta extends Vehiculo {
 
     @Override

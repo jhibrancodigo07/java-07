@@ -1,4 +1,3 @@
-package abstracciones;
 
 public abstract class Vehiculo {
 
