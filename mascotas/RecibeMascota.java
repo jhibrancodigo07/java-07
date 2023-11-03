@@ -1,3 +1,5 @@
+package mascotas;
+
 public class RecibeMascota {
 
     private String Nombreperro;
