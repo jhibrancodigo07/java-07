@@ -28,11 +28,12 @@ public class ConexionDB {
 
     public static void cerrarConexion(Connection conexion) {
         try {
-            if (conexion == null || conexion.isClosed()) return;
+            if (conexion == null || conexion.isClosed())
+                return;
             conexion.close();
         } catch (Exception e) {
             System.out.println("Error al cerrar la conexión");
         }
     }
-    
+
 }
