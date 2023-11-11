@@ -3,6 +3,7 @@ package interfaces;
 import java.util.List;
 
 public interface Repositoryinterface<T> {
+
     public T recuperarid(long id);
 
     public List<T> recuperarTodos();

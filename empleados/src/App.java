@@ -1,31 +1,38 @@
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import db.conexion.ConexionDB;
-import db.conexion.Repositorys.GeneroRepository;
+import db.conexion.Repositorys.GenerosRepository;
 import db.conexion.models.Genero;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Genero nuevoGenero = new Genero(2, "hayabusa");
+        GenerosRepository generosRepository = new GenerosRepository();
         List<Genero> generos = new ArrayList<>();
-        GeneroRepository generoRepository = new GeneroRepository();
-
-        generoRepository.agregar(nuevoGenero);
-        generos = generoRepository.recuperarTodos();
+        GenerosRepository generoRepository = new GenerosRepository();
+        generos = generosRepository.recuperarTodos();
         for (Genero genero : generos) {
-            System.out.println("nombre: " + genero.getNombre());
+            System.out.println("nombre:" + genero.getNombre());
         }
     }
 }
-// try (Connection connection = ConexionDB.obtenerConexion()) {
-// System.out.println("base conectada");
 
-// } catch (Exception e) {
-// System.out.println("base no conectada");
+/**
+ * try (Connection connection = ConexionDB.obtenerConexion()) {
+ * System.out.println("base conectada");
+ * 
+ * } catch (Exception e) {
+ * System.out.println("base no conectada");
+ * }
+ * }
+ * }
+ */
+
+/*
+ * 
+ * }
+ * }
+ * }
+ */
 
 // }
 // }
