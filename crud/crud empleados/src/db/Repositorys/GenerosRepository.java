@@ -19,14 +19,13 @@ public class GenerosRepository implements Repositoryinterface<Genero> {
             String q = "INSERT INTO generos VALUES(null,?)";
             try (PreparedStatement preparedStatement = conexion.prepareStatement(q);) {
                 preparedStatement.setString(1, entidad.getNombre());
-                preparedStatement.executeQuery();
+                preparedStatement.executeUpdate();
             } catch (Exception e) {
                 System.out.println("error al agregar genero");
             }
 
         } catch (Exception e) {
-            System.out.println("error al conectar");
-
+            System.out.println("error al consultar");
         }
 
     }

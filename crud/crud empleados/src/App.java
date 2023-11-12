@@ -6,15 +6,15 @@ import db.models.Genero;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Genero nuevoGenero = new Genero(null, "hayabusa");
+        Genero nuevoGenero = new Genero(1l, "hayabusa");
         List<Genero> generos = new ArrayList<>();
         GenerosRepository generosRepository = new GenerosRepository();
-
+        nuevoGenero.setId(3);
         generosRepository.agregar(nuevoGenero);
 
         generos = generosRepository.recuperarTodos();
         for (Genero genero : generos) {
-            System.out.println("nombre: " + genero.getNombre());
+            System.out.println("id: " + genero.getId() + "\tnombre" + genero.getNombre());
         }
     }
 }

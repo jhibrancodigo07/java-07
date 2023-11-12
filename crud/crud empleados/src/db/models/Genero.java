@@ -6,7 +6,10 @@ public class Genero {
     private String nombre;
 
     public Genero(Long id, String nombre) {
-        this.id = id;
+        if (id == null) {
+            throw new IllegalArgumentException("id no puede ser null");
+        }
+        this.id = id.longValue();
         this.nombre = nombre;
     }
 
