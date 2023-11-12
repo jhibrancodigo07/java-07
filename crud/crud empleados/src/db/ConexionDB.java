@@ -1,9 +1,10 @@
-package db.conexion;
+package db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class ConexionDB {
+
     private static Connection conexion;
     private static String user = "root";
     private static String pass = "root";

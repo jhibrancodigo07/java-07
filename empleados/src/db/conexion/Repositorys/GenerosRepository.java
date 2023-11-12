@@ -85,18 +85,6 @@ public class GenerosRepository implements Repositoryinterface<Genero> {
 
     @Override
     public Genero recuperarid(long id) {
-        try (Connection conexion = ConexionDB.obtenerConexion()) {
-            String q = "SELECT * FROM generos WHERE id = ?";
-        try (PreparedStatement preparedStatement = conexion.prepareStatement(q);) {
-            preparedStatement.setLong(1, id);
-            return this.dameEntidadResultSet(preparedStatement.executeQuery());
-        } catch (Exception e) {
-            System.out.println("error al crear el statement o ResultSet");
-        }  
-            
-        } catch (Exception e) {
-            System.out.println("error en la consulta");
-        }
         return null;
     }
 
