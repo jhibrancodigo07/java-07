@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         GenerosRepository generosRepository = new GenerosRepository();
         List<Genero> generos = new ArrayList<>();
-        GenerosRepository eneroRepository = new GenerosRepository();
+        GenerosRepository generoRepository = new GenerosRepository();
         generos = generosRepository.recuperarTodos();
         for (Genero genero : generos) {
             System.out.println("nombre:" + genero.getNombre());
