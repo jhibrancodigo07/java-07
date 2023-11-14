@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Repositoryinterface<T> {
 
-    public T recuperarid(long id);
+    public T recuperarid(Long id);
 
     public List<T> recuperarTodos();
 

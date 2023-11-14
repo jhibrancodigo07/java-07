@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Login {
 
-    private long id;
+    private Long id;
     private String nombre;
     private String email;
     private String usuario;
@@ -19,7 +19,7 @@ public class Login {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

@@ -1,11 +1,11 @@
 package db.conexion.Repositorys;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Statement;
 
 import db.conexion.ConexionDB;
 import db.conexion.models.Genero;
@@ -17,7 +17,7 @@ public class GenerosRepository implements Repositoryinterface<Genero> {
     public void agregar(Genero entidad) {
         try (Connection conexion = ConexionDB.obtenerConexion()) {
             String q = "INSERT INTO generos VALUES(null,?)";
-            try (PreparedStatement preparedStatement = conexion.prepareStatement(q);) {
+            try (PreparedStatement preparedStatement = conexion.prepareStatement(q)) {
                 preparedStatement.setString(1, entidad.getNombre());
                 preparedStatement.executeUpdate();
             } catch (Exception e) {
@@ -36,7 +36,7 @@ public class GenerosRepository implements Repositoryinterface<Genero> {
         try (Connection conexion = ConexionDB.obtenerConexion()) {
             String q = "DELETE FROM generos WHERE id =?";
             try (PreparedStatement preparedStatement = conexion.prepareStatement(q);) {
-                preparedStatement.setString(1, "" + entidad.getId());
+                preparedStatement.setString(1, "" + entidad.getNombre());
                 preparedStatement.executeUpdate();
             } catch (Exception e) {
                 System.out.println("Error al crear el Statement o Reaultset");
@@ -49,7 +49,7 @@ public class GenerosRepository implements Repositoryinterface<Genero> {
     @Override
     public void modificar(Genero entidad) {
         try (Connection conexion = ConexionDB.obtenerConexion()) {
-            String q = "UPDATE  generos SET nombre = ? WHERE id = ?";
+            String q = "UPDATE INTO generos SET nombre = ? WHERE id = ?";
             try (PreparedStatement preparedStatement = conexion.prepareStatement(q);) {
                 preparedStatement.setString(1, entidad.getNombre());
                 preparedStatement.setString(2, entidad.getNombre());
@@ -68,23 +68,46 @@ public class GenerosRepository implements Repositoryinterface<Genero> {
     public List<Genero> recuperarTodos() {
         try (Connection conexion = ConexionDB.obtenerConexion()) {
             String q = "SELECT * FROM generos";
-            try (
-                    PreparedStatement preparedStatement = conexion.prepareStatement(q);) {
-                ResultSet resultSet = preparedStatement.executeQuery(q);
-                return this.dameListaGeneros(resultSet);
-            } catch (Exception e) {
-                System.out.println("error en query recuperarTodos");
-            }
+            Statement statement = conexion.createStatement();
+            ResultSet resultSet = statement.executeQuery(q);
+            return dameListaGeneros(resultSet);
         } catch (Exception e) {
-            System.out.println("error en la consulta");
-
+            System.out.println("error en query recuperarTodos");
         }
-        return null;
 
+        return null;
     }
 
     @Override
-    public Genero recuperarid(long id) {
+    public Genero recuperarid(Long id) {
+        try (Connection conexion = ConexionDB.obtenerConexion()) {
+            String q = "SELECT * FROM generos WHERE ID = ? ";
+            try {
+                PreparedStatement preparedStatement = conexion.prepareStatement(q);
+                preparedStatement.setLong(1, id);
+                return dameEntidadResultSet(preparedStatement.executeQuery());
+            } catch (Exception e) {
+                System.out.println("error al crear el statement o el query");
+            }
+
+        } catch (Exception e) {
+            System.out.println("error al conectar");
+        }
+        return null;
+    }
+
+    private Genero dameEntidadResultSet(ResultSet resultSet) {
+        Long id = 0L;
+        String nombre = "";
+        try {
+            while (resultSet.next()) {
+                id = resultSet.getLong("id");
+                nombre = resultSet.getString("nombre");
+            }
+            return new Genero(id, nombre);
+        } catch (Exception e) {
+            System.out.println("Error al recuperar resultSet");
+        }
         return null;
     }
 

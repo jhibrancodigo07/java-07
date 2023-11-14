@@ -32,7 +32,7 @@ public class EmpleadoRepository implements Repositoryinterface<Empleado> {
     }
 
     @Override
-    public Empleado recuperarid(long id) {
+    public Empleado recuperarid(Long id) {
         // TODO Auto-generated method stub
         return null;
     }

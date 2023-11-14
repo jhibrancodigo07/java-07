@@ -2,13 +2,13 @@ package db.models;
 
 public class Login {
 
-    private long id;
+    private Long id;
     private String nombre;
     private String email;
     private String usuario;
     private String contrasenia;
 
-    public Login(long id, String nombre, String email, String usuario, String contrasenia) {
+    public Login(Long id, String nombre, String email, String usuario, String contrasenia) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -17,11 +17,11 @@ public class Login {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

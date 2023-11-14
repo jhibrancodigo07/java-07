@@ -6,7 +6,7 @@ import javax.xml.crypto.Data;
 
 public class Empleado {
 
-    private long id;
+    private Long id;
     private String nombre;
     private String domicilio;
     private String telefono;
@@ -14,7 +14,7 @@ public class Empleado {
     private Date fechaNacimiento;
     private Genero genero;
 
-    public Empleado(long id, String nombre, String domicilio, String telefono, String email, Date fechaNacimiento,
+    public Empleado(Long id, String nombre, String domicilio, String telefono, String email, Date fechaNacimiento,
             Genero genero) {
         this.id = id;
         this.nombre = nombre;
@@ -26,11 +26,11 @@ public class Empleado {
 
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
